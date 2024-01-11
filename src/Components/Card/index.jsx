@@ -1,4 +1,12 @@
+import { useContext } from 'react';
+
+import { ShoppingCartContext } from '../../Context';
+
+import './styles.css';
+
 function Card(data) {
+  const context = useContext(ShoppingCartContext);
+
   return (
     <div className='bg-white/40 cursor-pointer w-56 h-70 rounded-lg'>
       <figure className='relative mb-2 w-full h4/5'>
@@ -10,9 +18,26 @@ function Card(data) {
           src={data.data.images[0]}
           alt={data.data.title}
         />
-        <div className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h6 rounded-full m-2 p-1'>
-          +
-        </div>
+        <button
+          className='absolute top-0 right-0 flex justify-center items-center  w-6 h6 rounded-full m-2'
+          id='bg-color'
+          onClick={() => context.setCount(context.count + 1)}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth={1.5}
+            stroke='currentColor'
+            className='w-6 h-6'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M12 4.5v15m7.5-7.5h-15'
+            />
+          </svg>
+        </button>
       </figure>
       <p className='flex justify-between p-2'>
         <span className='text-sm font-light '>{data.data.title}</span>
