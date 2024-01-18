@@ -8,7 +8,7 @@ import MyOrders from '../MyOrders';
 import NotFound from '../NotFound';
 import SignIn from '../SignIn';
 import Navbar from '../../Components/Navbar';
-import { Layout } from '../../Components/Layout';
+import { CheckOutSideMenu } from '../../Components/CheckOutSideMenu';
 
 import './App.css';
 
@@ -28,10 +28,9 @@ const App = () => {
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
+        <AppRoutes />
         <Navbar />
-        <Layout>
-          <AppRoutes />
-        </Layout>
+        <CheckOutSideMenu />
       </BrowserRouter>
     </ShoppingCartProvider>
   );
