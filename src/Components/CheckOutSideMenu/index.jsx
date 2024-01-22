@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ShoppingCartContext } from '../../Context';
 import { totalPrice } from '../../Utils';
+
 import OrderCard from '../OrderCard';
 
 import './styles.css';
@@ -19,7 +20,7 @@ const CheckOutSideMenu = () => {
 
   const handleCheckOut = () => {
     const orderToAdd = {
-      date: '01.21.24',
+      date: '01.02.24',
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: totalPrice(context.cartProducts),
