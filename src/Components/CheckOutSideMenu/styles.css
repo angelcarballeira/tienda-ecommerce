@@ -6,3 +6,9 @@
   margin-right: 10px;
   background-color: #a7b99a;
 }
+
+.button-style {
+  background-color: rgba(0, 0, 0, 0.4);
+  /* color: rgb(22, 101, 52); */
+  color: #cad2c5;
+}

@@ -107,7 +107,9 @@ function Navbar() {
           </NavLink>
         </li>
         <li className='flex justify-center items-center'>
-          {buyIcon} <span className='font-medium'>{context.count}</span>
+          {buyIcon}
+          {/* <span className='font-medium'>{context.count}</span> */}
+          <span className='font-medium'>{context.cartProducts.length}</span>
         </li>
       </ul>
     </nav>

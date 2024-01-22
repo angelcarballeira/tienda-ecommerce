@@ -1,6 +1,8 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ShoppingCartContext } from '../../Context';
+import { totalPrice } from '../../Utils';
 import OrderCard from '../OrderCard';
 
 import './styles.css';
@@ -15,6 +17,18 @@ const CheckOutSideMenu = () => {
     context.setCartProducts(filteredProducts);
   };
 
+  const handleCheckOut = () => {
+    const orderToAdd = {
+      date: '01.21.24',
+      products: context.cartProducts,
+      totalProducts: context.cartProducts.length,
+      totalPrice: totalPrice(context.cartProducts),
+    };
+
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
+  };
+
   return (
     <aside
       className={`${
@@ -22,7 +36,7 @@ const CheckOutSideMenu = () => {
       } checkout-side-menu  flex-col fixed right-1 border border-black rounded-lg`}
     >
       <div className='flex justify-between items-center p-6'>
-        <h2 className='font-medium text-xl'>Mi orden</h2>
+        <h2 className='font-medium text-xl'>Mi carrito</h2>
         <button onClick={() => context.closeCheckOutSideMenu()}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -42,7 +56,7 @@ const CheckOutSideMenu = () => {
         </button>
       </div>
 
-      <div className='px-6 overflow-y-auto'>
+      <div className='px-6 overflow-y-auto flex-1'>
         {context.cartProducts.map((product) => (
           <OrderCard
             key={product.id}
@@ -53,6 +67,24 @@ const CheckOutSideMenu = () => {
             handleDelete={handleDelete}
           />
         ))}
+      </div>
+
+      <div className='px-6 mb-6'>
+        <p className='flex justify-between items-center mb-2'>
+          <span className='font-light text-lg'>Total: </span>
+          <span className='font-medium text-2xl'>
+            ${totalPrice(context.cartProducts)}
+          </span>
+        </p>
+        <Link to={'/my-orders/last'}>
+          {' '}
+          <button
+            className='w-full py-3 button-style font-semibold rounded-lg'
+            onClick={() => handleCheckOut()}
+          >
+            Comprar
+          </button>
+        </Link>
       </div>
     </aside>
   );
